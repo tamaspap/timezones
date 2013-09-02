@@ -12,7 +12,7 @@ The easiest way to get the user's timezone is probably to let him choose it from
 The very first thing we need is a user-friendly timezone list.
 Here is the list we use, and believe me, it was a time and coffee consuming task to put this together.
 
-### timezones.php
+### timezone_list.php
 
     return array (
         '(UTC-11:00) Midway Island' => 'Pacific/Midway',
@@ -256,7 +256,7 @@ Next time the user logs in, we can load his timezone identifier to the $_SESSION
 
 It worths mentioning that for some users multiple timezones can work. For example, I'm living in Hungary, so my timezone is `Europe/Budapest`, but the script will detect `Europe/Amsterdam` for me. They are both correct, and will work properly. However, it's recommended to make it possible for your users to change their timezones manually (for example on their profile/settings page).
 
-Based on the `timezones.php` file is very easy to generate a html dropdown the user can choose from:
+Based on the `timezone_list.php` file is very easy to generate a html dropdown the user can choose from:
 
     <select class="auth-input" id="timezone" name="timezone">
         <option value="Pacific/Midway">(UTC-11:00) Midway Island</option>
