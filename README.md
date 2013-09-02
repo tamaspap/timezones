@@ -7,7 +7,7 @@ Your users are from different countries and regions and you have to display date
 In this article I will briefly present how I solved the *timezone* problem for our upcoming project [sketchsim.com](http://www.sketchsim.com).
 
 ## Detecting the user’s timezone automatically
-The easiest way to get the user's timezone is probably to let him choose it from a dropdown. However, because we wanted to make the signup process as simple as possible, we decided to detect it automatically (the user can change it later on his profile page).
+The easiest way to get the user's timezone is probably to let him choose it from a dropdown. However, because we wanted to make the signup process as simple as possible, we decided to detect it automatically (the user can change it later on his profile/settings page).
 
 The very first thing we need is a user-friendly timezone list.
 Here is the list we use, and believe me, it was a time and coffee consuming task to put this together.
