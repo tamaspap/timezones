@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<link type="text/css" href="css/main.css" media="all" rel="stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	<script src="js/timezone_detect.js"></script>
+	<script>
+		$(function() {
+			$.ajax({
+				url: 'timezone_detect.php',
+				data: getTimeZoneData(),
+				method: 'POST',
+				dataType: 'JSON'
+			}).done(function(data) {
+				$('#timezone').html(data);
+			});
+		});
+	</script>
+	<meta charset=utf-8 />
+	<title>TimezonePHP</title>
+</head>
+<body>
+    <h1>Your timezone is:</h1>
+    <h2 id="timezone">...</h2>
+    <a href="https://github.com/paptamas/timezones" class="github_link">Back to Github</a>
+</body>
+</html>
