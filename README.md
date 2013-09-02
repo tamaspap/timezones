@@ -405,3 +405,14 @@ Based on the `timezones.php` file is very easy to generate a html dropdown the u
     </select>
 
 
+## Demo
+
+
+
+## Feedback
+
+If you find a bug or have an idea to make this code better feel free to [open an issue](https://github.com/paptamas/timezones/issues), or [create a pull request](https://github.com/paptamas/timezones/pulls).
+
+## Licence
+
+This software is licenced under  the [MIT licence](http://opensource.org/licenses/MIT).
