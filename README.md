@@ -186,6 +186,15 @@ And finally the PHP class, I use for finding the appropriate timezone identifier
 
 ### timezone.php
 
+    <?php
+    /*
+     * @package		Timezone Detect
+     * @author      Pap Tamas
+     * @copyright   (c) 2013 Pap Tamas
+     * @website		https://github.com/paptamas/timezones
+     * @license		http://opensource.org/licenses/MIT
+     *
+     */
     class Timezone  {
     
         /**
@@ -193,24 +202,26 @@ And finally the PHP class, I use for finding the appropriate timezone identifier
          *
          * @return  array
          */
-        public static function get_list()
+        public static function get_timezone_list()
         {
-            return require 'timezones.php';
+            return require 'timezone_list.php';
         }
     
         /**
-         * Detect timezone id from an offset and dst
+         * Detect the timezone id(s) from an offset and dst
          *
          * @param   int     $offset
          * @param   int     $dst
+         * @param   bool    $multiple
          * @param   string  $default
-         * @return  string
+         * @return  string|array
          */
-        public static function detect_timezone_id($offset, $dst, $default = 'UTC')
+        public static function detect_timezone_id($offset, $dst, $multiple = FALSE, $default = 'UTC')
         {
-            $detected_timezone_id = NULL;
+            $detected_timezone_ids = array();
     
-            $timezones = self::get_list();
+            // Get the timezone list
+            $timezones = self::get_timezone_list();
     
             // Try to find a timezone for which both the offset and dst match
             foreach ($timezones as $timezone_id)
@@ -218,17 +229,18 @@ And finally the PHP class, I use for finding the appropriate timezone identifier
                 $timezone_data = self::get_timezone_data($timezone_id);
                 if ($timezone_data['offset'] == $offset && $dst == $timezone_data['dst'])
                 {
-                    $detected_timezone_id = $timezone_id;
-                    break;
+                    array_push($detected_timezone_ids, $timezone_id);
+                    if ( ! $multiple)
+                        break;
                 }
             }
     
-            if ( ! isset($detected_timezone_id))
+            if (empty($detected_timezone_ids))
             {
-                $detected_timezone_id = $default;
+                $detected_timezone_ids = array($default);
             }
     
-            return $detected_timezone_id;
+            return $multiple ? $detected_timezone_ids : $detected_timezone_ids[0];
         }
     
         /**
@@ -248,6 +260,9 @@ And finally the PHP class, I use for finding the appropriate timezone identifier
             );
         }
     }
+    
+    // END Timezone
+
     
 After detecting the appopriate timezone identifier for the user, we can save it to the database along with other user related data (username, password, etc.).
 Next time the user logs in, we can load his timezone identifier to the $_SESSION array. This way, any time we need to display a time or date for the user we [can convert it to his timezone first](http://stackoverflow.com/q/2505681/240324).
