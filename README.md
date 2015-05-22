@@ -269,7 +269,7 @@ Next time the user logs in, we can load his timezone identifier to the $_SESSION
 
 ## Let the user choose his timezone
 
-It worths mentioning that for some users multiple timezones can work. For example, I'm living in Hungary, so my timezone is `Europe/Budapest`, but the script will detect `Europe/Amsterdam` for me. They are both correct, and will work properly. However, it's recommended to make it possible for your users to change their timezones manually (for example on their profile/settings page).
+It is worth mentioning that for some users, multiple timezones can work. For example, I'm living in Hungary, so my timezone is `Europe/Budapest`, but the script will detect `Europe/Amsterdam` for me. They are both correct, and will work properly. However, it's recommended to make it possible for your users to change their timezones manually (for example on their profile/settings page).
 
 Based on the `timezone_list.php` file is very easy to generate a html dropdown the user can choose from:
 
