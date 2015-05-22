@@ -175,7 +175,7 @@ Our javascript function (inspired by [this article](http://javascript.about.com/
       var jan = new Date(today.getFullYear(), 0, 1);
       var jul = new Date(today.getFullYear(), 6, 1);
       var dst = today.getTimezoneOffset() < Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
-      
+
       return {
         timezone_offset: -(today.getTimezoneOffset()/60),
         timezone_dst: +dst
@@ -196,7 +196,7 @@ And finally the PHP class, I use for finding the appropriate timezone identifier
      *
      */
     class Timezone  {
-    
+
         /**
          * Get the timezone list
          *
@@ -206,7 +206,7 @@ And finally the PHP class, I use for finding the appropriate timezone identifier
         {
             return require 'timezone_list.php';
         }
-    
+
         /**
          * Detect the timezone id(s) from an offset and dst
          *
@@ -219,10 +219,10 @@ And finally the PHP class, I use for finding the appropriate timezone identifier
         public static function detect_timezone_id($offset, $dst, $multiple = FALSE, $default = 'UTC')
         {
             $detected_timezone_ids = array();
-    
+
             // Get the timezone list
             $timezones = self::get_timezone_list();
-    
+
             // Try to find a timezone for which both the offset and dst match
             foreach ($timezones as $timezone_id)
             {
@@ -234,15 +234,15 @@ And finally the PHP class, I use for finding the appropriate timezone identifier
                         break;
                 }
             }
-    
+
             if (empty($detected_timezone_ids))
             {
                 $detected_timezone_ids = array($default);
             }
-    
+
             return $multiple ? $detected_timezone_ids : $detected_timezone_ids[0];
         }
-    
+
         /**
          * Get the current offset and dst for the given timezone id
          *
@@ -253,17 +253,17 @@ And finally the PHP class, I use for finding the appropriate timezone identifier
         {
             $date = new DateTime("now");
             $date->setTimezone(timezone_open($timezone_id));
-    
+
             return array(
                 'offset' => $date->getOffset() / 3600,
                 'dst' => intval(date_format($date, "I"))
             );
         }
     }
-    
+
     // END Timezone
 
-    
+
 After detecting the appopriate timezone identifier for the user, we can save it to the database along with other user related data (username, password, etc.).
 Next time the user logs in, we can load his timezone identifier to the $_SESSION array. This way, any time we need to display a time or date for the user we [can convert it to his timezone first](http://stackoverflow.com/q/2505681/240324).
 
