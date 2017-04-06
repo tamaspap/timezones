@@ -29,7 +29,7 @@ return array (
     '(UTC-03:30) Newfoundland' => 'Canada/Newfoundland',
     '(UTC-03:00) Brasilia' => 'America/Sao_Paulo',
     '(UTC-03:00) Buenos Aires' => 'America/Argentina/Buenos_Aires',
-    '(UTC-03:00) Georgetown' => 'America/Argentina/Buenos_Aires',
+    '(UTC-03:00) Georgetown' => 'America/Argentina/Georgetown',
     '(UTC-03:00) Greenland' => 'America/Godthab',
     '(UTC-02:00) Mid-Atlantic' => 'America/Noronha',
     '(UTC-01:00) Azores' => 'Atlantic/Azores',
